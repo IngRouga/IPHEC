@@ -407,7 +407,7 @@
       </ul>
     </nav>
     <div class="nav-right">
-      <a class="btn btn-primary nav-cta" onclick="openWhatsApp(MSG_INSCRIPTION)">S'inscrire</a>
+      <a class="btn btn-primary nav-cta" href="#inscription">S'inscrire</a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
       </button>
@@ -428,7 +428,7 @@
     <li><a href="#resultats">Résultats</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a class="btn btn-primary" onclick="openWhatsApp(MSG_INSCRIPTION)">S'inscrire sur WhatsApp</a>
+  <a class="btn btn-primary" href="#inscription">S'inscrire</a>
 </div>
 
 <!-- HERO -->
@@ -439,7 +439,7 @@
     <p class="hero-slogan">« L'expertise au service de l'innovation »</p>
     <div class="hero-actions">
       <a href="#formations" class="btn btn-outline">Découvrir nos formations</a>
-      <a class="btn btn-primary" onclick="openWhatsApp(MSG_INSCRIPTION)">S'inscrire maintenant</a>
+      <a class="btn btn-primary" href="#inscription">S'inscrire maintenant</a>
     </div>
   </div>
 </section>
@@ -714,7 +714,7 @@
     <span class="eyebrow" style="color:var(--gold);border-color:var(--gold);">Rentrée académique 2026 – 2027</span>
     <h2>Votre avenir commence ici.</h2>
     <p>Rejoignez l'IPHEC et préparez-vous à construire une carrière ambitieuse.</p>
-    <a class="btn btn-primary" onclick="openWhatsApp(MSG_INSCRIPTION)">S'inscrire à l'IPHEC</a>
+    <a class="btn btn-primary" href="#inscription">S'inscrire à l'IPHEC</a>
   </div>
 </section>
 
@@ -794,6 +794,12 @@ function formationMessage(nom){
   return "Bonjour IPHEC, je suis intéressé(e) par la formation " + nom + " pour l'année académique 2026-2027. Je souhaite obtenir les conditions d'admission et les informations nécessaires pour m'inscrire. Merci.";
 }
 
+function goToInscriptionForm(filiereNom){
+  const select = document.getElementById('insFiliere');
+  if(select){ select.value = filiereNom; }
+  document.getElementById('inscription').scrollIntoView({behavior:'smooth'});
+}
+
 // ===== Formations data =====
 const formations = [
   {
@@ -853,7 +859,7 @@ formations.forEach(f=>{
     <p style="font-size:13.5px;color:var(--ink-soft);"><strong style="color:var(--navy);">Débouchés :</strong> ${f.debouches}</p>
     <div class="prog-actions">
       <a class="btn btn-ghost" onclick="document.getElementById('formModal-${f.sigle}').style.display='flex'">Voir la formation</a>
-      <a class="btn btn-primary" onclick='openWhatsApp(formationMessage("${f.nom}"))'>S'inscrire</a>
+      <a class="btn btn-primary" onclick='goToInscriptionForm("${f.nom}")'>S'inscrire</a>
     </div>
   `;
   programsGrid.appendChild(card);
