@@ -383,6 +383,39 @@ footer ul a:hover{color:#fff;}
   .hero-inner{padding-top:126px;}
 }
 
+
+/* PREINSCRIPTION FORM */
+.preinscription-form{max-width:760px;margin:0 auto;text-align:left;}
+.pf-group{margin-bottom:40px;}
+.pf-group-title{
+  font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--bordeaux);
+  font-family:var(--sans);font-weight:700;margin-bottom:20px;padding-bottom:12px;
+  border-bottom:1px solid var(--grey-300);
+}
+.pf-row{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:22px;}
+.pf-field{display:flex;flex-direction:column;gap:7px;position:relative;}
+.pf-field label{font-size:12.5px;color:var(--ink-soft);font-weight:600;letter-spacing:.01em;}
+.pf-field input,.pf-field select{
+  width:100%;border:none;border-bottom:1.5px solid var(--grey-300);padding:11px 2px;
+  font-size:15px;background:transparent;color:var(--ink);font-family:var(--sans);
+  transition:border-color .2s ease;
+}
+.pf-field select{cursor:pointer;}
+.pf-field input:focus,.pf-field select:focus{outline:none;border-color:var(--navy);}
+.pf-field.pf-invalid input,.pf-field.pf-invalid select{border-color:var(--bordeaux);}
+.pf-error{display:none;font-size:12.5px;color:var(--bordeaux);}
+.pf-field.pf-invalid .pf-error{display:block;}
+.pf-summary-error{display:none;color:var(--bordeaux);font-size:14px;font-weight:600;margin:8px 0 20px;padding:14px 18px;background:rgba(122,30,43,.06);border-left:3px solid var(--bordeaux);}
+.pf-summary-error.show{display:block;}
+.pf-submit{width:100%;justify-content:center;padding:16px 26px;font-size:15px;}
+.pf-note{margin-top:14px;font-size:12.5px;color:var(--ink-soft);text-align:center;}
+
+@media (max-width:600px){
+  .pf-row{grid-template-columns:1fr;gap:16px;margin-bottom:16px;}
+  .pf-group{margin-bottom:30px;}
+  .pf-group-title{font-size:12px;margin-bottom:16px;}
+}
+
 /* ============ MOBILE-FIRST RESPONSIVE ============ */
 @media (max-width:980px){
   nav.main-nav,.nav-right .btn{display:none;}
@@ -732,20 +765,113 @@ footer ul a:hover{color:#fff;}
 <section class="final-cta" id="inscription">
   <div class="wrap">
     <span class="eyebrow">Rentrée académique 2026 – 2027</span>
-    <h2>Votre avenir commence ici.</h2>
-    <p>Rejoignez l'IPHEC et préparez-vous à construire une carrière ambitieuse.</p>
-    <div style="max-width:520px;margin:0 auto;text-align:left;">
-      <div class="ins-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;">
-        <div><label style="font-size:12px;color:var(--ink-soft);">Nom</label><input id="insNom" type="text" style="width:100%;border:none;border-bottom:1.5px solid var(--grey-300);padding:10px 0;font-size:15px;background:transparent;"></div>
-        <div><label style="font-size:12px;color:var(--ink-soft);">Prénom</label><input id="insPrenom" type="text" style="width:100%;border:none;border-bottom:1.5px solid var(--grey-300);padding:10px 0;font-size:15px;background:transparent;"></div>
+    <h2>Préinscription à l'IPHEC</h2>
+    <p>Renseignez les informations ci-dessous. Votre préinscription sera envoyée à l'IPHEC sur WhatsApp, prête à être confirmée par vous.</p>
+
+    <form id="preinscriptionForm" class="preinscription-form" novalidate>
+
+      <div class="pf-group">
+        <h3 class="pf-group-title">Informations personnelles</h3>
+        <div class="pf-row">
+          <div class="pf-field">
+            <label for="pfNoms">Noms</label>
+            <input id="pfNoms" type="text" autocomplete="family-name">
+            <span class="pf-error" data-for="pfNoms">Veuillez indiquer vos noms.</span>
+          </div>
+          <div class="pf-field">
+            <label for="pfPrenom">Prénom</label>
+            <input id="pfPrenom" type="text" autocomplete="given-name">
+            <span class="pf-error" data-for="pfPrenom">Veuillez indiquer votre prénom.</span>
+          </div>
+        </div>
+        <div class="pf-row">
+          <div class="pf-field">
+            <label for="pfSexe">Sexe</label>
+            <select id="pfSexe">
+              <option value="" disabled selected>Sélectionnez</option>
+              <option value="Masculin">Masculin</option>
+              <option value="Féminin">Féminin</option>
+            </select>
+            <span class="pf-error" data-for="pfSexe">Veuillez sélectionner votre sexe.</span>
+          </div>
+          <div class="pf-field">
+            <label for="pfDateNaissance">Date de naissance</label>
+            <input id="pfDateNaissance" type="date">
+            <span class="pf-error" data-for="pfDateNaissance">Veuillez indiquer votre date de naissance.</span>
+          </div>
+        </div>
+        <div class="pf-row">
+          <div class="pf-field">
+            <label for="pfLieuNaissance">Lieu de naissance</label>
+            <input id="pfLieuNaissance" type="text">
+            <span class="pf-error" data-for="pfLieuNaissance">Veuillez indiquer votre lieu de naissance.</span>
+          </div>
+          <div class="pf-field">
+            <label for="pfNationalite">Nationalité</label>
+            <input id="pfNationalite" type="text">
+            <span class="pf-error" data-for="pfNationalite">Veuillez indiquer votre nationalité.</span>
+          </div>
+        </div>
       </div>
-      <div class="ins-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;">
-        <div><label style="font-size:12px;color:var(--ink-soft);">Filière souhaitée</label><select id="insFiliere" style="width:100%;border:none;border-bottom:1.5px solid var(--grey-300);padding:10px 0;font-size:15px;background:transparent;"></select></div>
-        <div><label style="font-size:12px;color:var(--ink-soft);">Téléphone (facultatif)</label><input id="insTelephone" type="tel" style="width:100%;border:none;border-bottom:1.5px solid var(--grey-300);padding:10px 0;font-size:15px;background:transparent;"></div>
+
+      <div class="pf-group">
+        <h3 class="pf-group-title">Parcours académique</h3>
+        <div class="pf-row">
+          <div class="pf-field">
+            <label for="pfSerieBac">Série du Bac</label>
+            <input id="pfSerieBac" type="text" placeholder="Ex. : Série D, BAC TECH G1...">
+            <span class="pf-error" data-for="pfSerieBac">Veuillez indiquer la série du Bac.</span>
+          </div>
+          <div class="pf-field">
+            <label for="pfAnneeBac">Année d'obtention du Bac</label>
+            <input id="pfAnneeBac" type="text" inputmode="numeric" maxlength="4" placeholder="Ex. : 2026">
+            <span class="pf-error" data-for="pfAnneeBac">Veuillez indiquer une année valide (4 chiffres).</span>
+          </div>
+        </div>
+        <div class="pf-row">
+          <div class="pf-field">
+            <label for="pfRegime">Régime</label>
+            <select id="pfRegime">
+              <option value="" disabled selected>Sélectionnez</option>
+              <option value="Boursier de l'État">Boursier de l'État</option>
+              <option value="Boursier d'institution">Boursier d'institution</option>
+              <option value="Non boursier">Non boursier</option>
+            </select>
+            <span class="pf-error" data-for="pfRegime">Veuillez sélectionner un régime.</span>
+          </div>
+          <div class="pf-field">
+            <label for="pfStatut">Statut</label>
+            <select id="pfStatut">
+              <option value="" disabled selected>Sélectionnez</option>
+              <option value="Nouveau">Nouveau</option>
+              <option value="Redoublant">Redoublant</option>
+            </select>
+            <span class="pf-error" data-for="pfStatut">Veuillez sélectionner un statut.</span>
+          </div>
+        </div>
       </div>
-      <p id="insError" style="display:none;color:var(--bordeaux);font-size:13px;margin-bottom:14px;">Merci de renseigner votre nom, prénom et filière.</p>
-      <a class="btn btn-primary" style="width:100%;justify-content:center;" onclick="submitInscriptionForm()">Envoyer ma demande via WhatsApp</a>
-    </div>
+
+      <div class="pf-group">
+        <h3 class="pf-group-title">Coordonnées</h3>
+        <div class="pf-row">
+          <div class="pf-field">
+            <label for="pfTelephone">Numéro de téléphone</label>
+            <input id="pfTelephone" type="tel" placeholder="Ex. : 90 00 00 00" autocomplete="tel">
+            <span class="pf-error" data-for="pfTelephone">Veuillez indiquer un numéro de téléphone valide.</span>
+          </div>
+          <div class="pf-field">
+            <label for="pfTelephoneParent">Numéro de téléphone d'un parent</label>
+            <input id="pfTelephoneParent" type="tel" placeholder="Ex. : 90 00 00 00">
+            <span class="pf-error" data-for="pfTelephoneParent">Veuillez indiquer un numéro de téléphone valide.</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="pf-summary-error" id="pfSummaryError">Merci de corriger les champs indiqués ci-dessus avant de continuer.</p>
+
+      <button type="submit" class="btn btn-primary pf-submit">Envoyer ma préinscription sur WhatsApp</button>
+      <p class="pf-note">Vous serez redirigé vers WhatsApp. Le message sera prérempli — c'est à vous de confirmer et d'envoyer.</p>
+    </form>
   </div>
 </section>
 <footer>
@@ -1000,52 +1126,132 @@ window.addEventListener('popstate', ()=>{
   document.getElementById('ficheOverlay').classList.remove('open');
 });
 
-// ===== Inscription form =====
-const insFiliereSelect = document.getElementById('insFiliere');
-const defaultOpt = document.createElement('option');
-defaultOpt.value = ""; defaultOpt.textContent = "Sélectionnez une filière"; defaultOpt.disabled = true; defaultOpt.selected = true;
-insFiliereSelect.appendChild(defaultOpt);
-groupes.forEach(g=>{
-  niveaux.filter(n=>n.groupe===g).forEach(n=>{
-    const grp = document.createElement('optgroup');
-    grp.label = n.titre;
-    n.filieres.forEach(f=>{
-      const opt = document.createElement('option');
-      opt.value = f + " — " + n.titre;
-      opt.textContent = f;
-      grp.appendChild(opt);
-    });
-    insFiliereSelect.appendChild(grp);
-  });
-});
+// ===== Préinscription form =====
+// Dedicated WhatsApp destination number for préinscription submissions
+// (kept separate from the general contact/floating-button number).
+const PREINSCRIPTION_WHATSAPP_NUMBER = "22780969627";
 
-function goToInscriptionForm(filiereValue){
-  const select = document.getElementById('insFiliere');
-  let matched = false;
-  for(const opt of select.options){
-    if(opt.value === filiereValue){ select.value = opt.value; matched = true; break; }
-  }
-  if(!matched){
-    for(const opt of select.options){
-      if(opt.value.indexOf(filiereValue) !== -1){ select.value = opt.value; matched = true; break; }
-    }
-  }
+function goToInscriptionForm(){
   document.getElementById('inscription').scrollIntoView({behavior:'smooth'});
 }
 
-function submitInscriptionForm(){
-  const nom = document.getElementById('insNom').value.trim();
-  const prenom = document.getElementById('insPrenom').value.trim();
-  const filiere = document.getElementById('insFiliere').value;
-  const telephone = document.getElementById('insTelephone').value.trim();
-  const errorEl = document.getElementById('insError');
-  if(!nom || !prenom || !filiere){ errorEl.style.display = 'block'; return; }
-  errorEl.style.display = 'none';
-  let message = `Bonjour IPHEC, je souhaite m'inscrire pour l'année académique 2026-2027.\nNom : ${nom}\nPrénom : ${prenom}\nFilière souhaitée : ${filiere}`;
-  if(telephone){ message += `\nTéléphone : ${telephone}`; }
-  message += `\nMerci de m'indiquer la procédure à suivre pour finaliser mon inscription.`;
-  openWhatsApp(message);
+const pfFieldIds = [
+  'pfNoms','pfPrenom','pfSexe','pfDateNaissance','pfLieuNaissance','pfNationalite',
+  'pfSerieBac','pfAnneeBac','pfRegime','pfStatut','pfTelephone','pfTelephoneParent'
+];
+
+function pfFormatDate(isoDate){
+  // isoDate like "2007-04-12" -> "12/04/2007"; if empty or malformed, return as-is.
+  const parts = isoDate.split('-');
+  if(parts.length === 3){
+    const [y, m, d] = parts;
+    return `${d}/${m}/${y}`;
+  }
+  return isoDate;
 }
+
+function pfIsValidPhone(value){
+  // Accepts digits, spaces, +, - ; requires at least 8 digits total.
+  const digits = value.replace(/[^0-9]/g, '');
+  return /^[0-9+\s-]+$/.test(value) && digits.length >= 8;
+}
+
+function pfClearErrors(){
+  pfFieldIds.forEach(id=>{
+    const field = document.getElementById(id);
+    if(field) field.closest('.pf-field').classList.remove('pf-invalid');
+  });
+  document.getElementById('pfSummaryError').classList.remove('show');
+}
+
+function pfValidate(){
+  let firstInvalidEl = null;
+  let hasError = false;
+
+  const currentYear = new Date().getFullYear();
+
+  const checks = [
+    { id:'pfNoms', valid: v => v.trim().length > 0 },
+    { id:'pfPrenom', valid: v => v.trim().length > 0 },
+    { id:'pfSexe', valid: v => v.trim().length > 0 },
+    { id:'pfDateNaissance', valid: v => v.trim().length > 0 },
+    { id:'pfLieuNaissance', valid: v => v.trim().length > 0 },
+    { id:'pfNationalite', valid: v => v.trim().length > 0 },
+    { id:'pfSerieBac', valid: v => v.trim().length > 0 },
+    { id:'pfAnneeBac', valid: v => /^[0-9]{4}$/.test(v.trim()) && Number(v.trim()) >= 1990 && Number(v.trim()) <= currentYear + 1 },
+    { id:'pfRegime', valid: v => v.trim().length > 0 },
+    { id:'pfStatut', valid: v => v.trim().length > 0 },
+    { id:'pfTelephone', valid: v => pfIsValidPhone(v.trim()) },
+    { id:'pfTelephoneParent', valid: v => pfIsValidPhone(v.trim()) }
+  ];
+
+  checks.forEach(({id, valid})=>{
+    const el = document.getElementById(id);
+    const fieldWrap = el.closest('.pf-field');
+    const ok = valid(el.value || '');
+    if(!ok){
+      fieldWrap.classList.add('pf-invalid');
+      hasError = true;
+      if(!firstInvalidEl) firstInvalidEl = el;
+    } else {
+      fieldWrap.classList.remove('pf-invalid');
+    }
+  });
+
+  return { hasError, firstInvalidEl };
+}
+
+function pfBuildMessage(){
+  const val = id => document.getElementById(id).value.trim();
+  const noms = val('pfNoms');
+  const prenom = val('pfPrenom');
+  const sexe = val('pfSexe');
+  const dateNaissance = pfFormatDate(val('pfDateNaissance'));
+  const lieuNaissance = val('pfLieuNaissance');
+  const nationalite = val('pfNationalite');
+  const serieBac = val('pfSerieBac');
+  const anneeBac = val('pfAnneeBac');
+  const regime = val('pfRegime');
+  const statut = val('pfStatut');
+  const telephone = val('pfTelephone');
+  const telephoneParent = val('pfTelephoneParent');
+
+  return "PRÉINSCRIPTION IPHEC\n\n" +
+    "INFORMATIONS PERSONNELLES\n" +
+    `Noms : ${noms}\n` +
+    `Prénom : ${prenom}\n` +
+    `Sexe : ${sexe}\n` +
+    `Date de naissance : ${dateNaissance}\n` +
+    `Lieu de naissance : ${lieuNaissance}\n` +
+    `Nationalité : ${nationalite}\n\n` +
+    "PARCOURS ACADÉMIQUE\n" +
+    `Série du Bac : ${serieBac}\n` +
+    `Année d'obtention du Bac : ${anneeBac}\n` +
+    `Régime : ${regime}\n` +
+    `Statut : ${statut}\n\n` +
+    "COORDONNÉES\n" +
+    `Téléphone : ${telephone}\n` +
+    `Téléphone du parent : ${telephoneParent}`;
+}
+
+document.getElementById('preinscriptionForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  pfClearErrors();
+  const { hasError, firstInvalidEl } = pfValidate();
+
+  if(hasError){
+    document.getElementById('pfSummaryError').classList.add('show');
+    if(firstInvalidEl){
+      firstInvalidEl.closest('.pf-field').scrollIntoView({behavior:'smooth', block:'center'});
+      firstInvalidEl.focus();
+    }
+    return;
+  }
+
+  const message = pfBuildMessage();
+  const url = "https://wa.me/" + PREINSCRIPTION_WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+});
 
 // ===== Lightbox =====
 function openLightbox(src){
